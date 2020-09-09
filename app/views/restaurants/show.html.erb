@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+<h1><%= @restaurant.name %></h1>
+<span><%= "#{@restaurant.reviews.sum(&:rating).to_f/@restaurant.reviews.size}/5" %></span>
+<div><%= @restaurant.category %></div>
+<div><%= @restaurant.address %></div>
+<div><%= @restaurant.phone_number %></div>
+<h4>Post a Review</h4>
+
+<%= render 'reviews/form', review: @review %>
+
+<% @restaurant.reviews.each do |review| %>
+  <tr>
+    <td>
+      <div><%= review.content %></div>
+      <div><%= "#{review.rating}/5" %></div>
+    </td>
+  </tr>
+<% end %>
+<%= link_to 'Back', restaurants_path %>
